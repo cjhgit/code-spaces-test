@@ -1,0 +1,10 @@
+{
+  "name": "code-spaces-test",
+  "private": true,
+  "scripts": {
+    "dev": "serve -l 3172 ."
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}
