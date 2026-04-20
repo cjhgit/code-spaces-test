@@ -1,8 +1,11 @@
 {
   "name": "code-spaces-test",
   "private": true,
+  "dependencies": {
+    "uuid": "^11.1.0"
+  },
   "scripts": {
-    "dev": "serve -l 3172 ."
+    "dev": "serve -l 3172 --no-clipboard ."
   },
   "devDependencies": {
     "serve": "^14.2.4"
