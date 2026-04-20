@@ -23,10 +23,19 @@
 			"version": "24.14.0"
 		},
 		"ghcr.io/devcontainer-config/features/dot-config:4": {}
-	}
+	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
+	"forwardPorts": [3172],
+	"portsAttributes": {
+		"3172": {
+			"label": "Dev Server",
+			"onAutoForward": "notify"
+		}
+	},
+	
+	// Docker run arguments to map ports
+	"runArgs": ["-p", "3172:3172"]
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "uname -a",
