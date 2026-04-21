@@ -2,10 +2,15 @@
   "name": "code-spaces-test",
   "private": true,
   "dependencies": {
+    "@koa/router": "^14.0.0",
+    "koa": "^3.0.1",
+    "supertest": "^7.1.4",
     "uuid": "^11.1.0"
   },
   "scripts": {
-    "dev": "serve -l 3172 --no-clipboard ."
+    "frontend": "serve -l 3172 --no-clipboard .",
+    "dev": "node server.js",
+    "test": "node --test"
   },
   "devDependencies": {
     "serve": "^14.2.4"

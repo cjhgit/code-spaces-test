@@ -27,8 +27,12 @@
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [3172],
+	"forwardPorts": [3000, 3172],
 	"portsAttributes": {
+		"3000": {
+			"label": "Application",
+			"onAutoForward": "notify"
+		},
 		"3172": {
 			"label": "Dev Server",
 			"onAutoForward": "notify"
@@ -36,7 +40,12 @@
 	},
 	
 	// Docker run arguments to map ports
-	"runArgs": ["-p", "3172:3172", "-w", "/workspaces/code-spaces-test"],
+	"runArgs": ["-p", "3000:3000", "-p", "3172:3172", "-w", "/workspaces/code-spaces-test"],
+
+	// Mount .claude/settings.json from host to container
+	"mounts": [
+		"source=${localEnv:HOME}/.claude/settings.json,target=/root/.claude/settings.json,type=bind"
+	],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "grep -q 'cd /workspaces/code-spaces-test' ~/.bashrc || echo 'cd /workspaces/code-spaces-test' >> ~/.bashrc",
