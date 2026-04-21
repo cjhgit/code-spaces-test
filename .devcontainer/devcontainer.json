@@ -41,13 +41,14 @@
 	// Docker run arguments to map ports
 	"runArgs": ["-p", "3000:3000", "-p", "3172:3172", "-w", "/workspaces/code-spaces-test"],
 
-	// Mount .claude/settings.json from host to container
+	// Mount .claude/settings.json and .ssh from host to container
 	"mounts": [
-		"source=${localEnv:HOME}/.claude/settings.json,target=/root/.claude/settings.json,type=bind"
+		"source=${localEnv:HOME}/.claude/settings.json,target=/root/.claude/settings.json,type=bind",
+		"source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached"
 	],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "grep -q 'cd /workspaces/code-spaces-test' ~/.bashrc || echo 'cd /workspaces/code-spaces-test' >> ~/.bashrc",
+	"postCreateCommand": "grep -q 'cd /workspaces/code-spaces-test' ~/.bashrc || echo 'cd /workspaces/code-spaces-test' >> ~/.bashrc && chmod 700 /root/.ssh && chmod 600 /root/.ssh/id_* 2>/dev/null || true && [ -f /root/.ssh/config ] && mv /root/.ssh/config /root/.ssh/config.host && cat > /root/.ssh/config << 'EOF'\nHost *\n    StrictHostKeyChecking accept-new\n    IdentitiesOnly no\nEOF\n",
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
