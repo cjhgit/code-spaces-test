@@ -3,7 +3,9 @@
 {
 	"name": "Code Spaces Test",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/base:bullseye",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
 	"workspaceFolder": "/workspaces/code-spaces-test",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
@@ -20,9 +22,6 @@
 		}
 	},
 	"features": {
-		"ghcr.io/devcontainers/features/node:1": {
-			"version": "24.14.0"
-		},
 		"ghcr.io/devcontainer-config/features/dot-config:4": {}
 	},
 
