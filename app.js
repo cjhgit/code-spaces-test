@@ -13,6 +13,10 @@ function createApp() {
     ctx.body = { message: "hello" };
   });
 
+  router.get("/version", (ctx) => {
+    ctx.body = "v26.4.22";
+  });
+
   app.use(router.routes());
   app.use(router.allowedMethods());
   return app;
