@@ -14,7 +14,7 @@ function createApp() {
   });
 
   router.get("/version", (ctx) => {
-    ctx.body = "v26.422.1";
+    ctx.body = "v26.422.2";
   });
 
   app.use(router.routes());
